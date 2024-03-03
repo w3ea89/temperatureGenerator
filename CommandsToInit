@@ -1,0 +1,4 @@
+docker-compose up -d
+docker container exec -it kafka /bin/bash
+kafka-topics --bootstrap-server localhost:9092 --topic temperatureMeasurements --create --partitions 1
+kafka-topics --bootstrap-server localhost:9092 --delete --topic temperatureMeasurements

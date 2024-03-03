@@ -1,0 +1,28 @@
+spring:
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      auto-offset-reset: earliest
+      group-id: temperature-anomaly-detector
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            value:
+              default:
+                type: com.ks.kontakt.model.TemperatureMeasurement
+    streams:
+      bootstrap-servers:
+        - localhost:9092
+        - 192.168.0.1:9092
+topic: test-temperatureMeasurements
+sensorNumber: 1
+temperatureConfiguration:
+  anomalyChance: 0.0001
+  normalRangeMin: 22.0
+  normalRangeMax: 23.0
+  anomalyRangeMin: 22.2
+  anomalyRangeMax: 29.0
